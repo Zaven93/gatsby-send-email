@@ -1,22 +1,34 @@
-import React from "react"
-import { Link } from "gatsby"
+import React, { useState } from "react"
+import { useIntl } from "gatsby-plugin-intl"
+import Navbar from "../components/Navbar"
+import LangNav from "../components/LangNav"
+import "../styles.scss"
 
-import Layout from "../components/layout"
-import Image from "../components/image"
-import SEO from "../components/seo"
+const Index = () => {
+  const [active, setActive] = useState(false)
+  const [clicked, setClicked] = useState(false)
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link> <br />
-    <Link to="/using-typescript/">Go to "Using TypeScript"</Link>
-  </Layout>
-)
+  const intl = useIntl()
+  return (
+    <>
+      <Navbar active={active} setActive={setActive} />
+      <div className="main-content">
+        <section id="home">
+          <div className="home-header">
+            <h1>
+              {intl.formatMessage({ id: "greeting" })}
+              <span>Impex</span>
+            </h1>
+            <p>Textile production export and import</p>
+          </div>
+        </section>
+        <section id="about">About us</section>
+        <section id="features"></section>
+        <section id="services"></section>
+        <section id="contact"></section>
+      </div>
+    </>
+  )
+}
 
-export default IndexPage
+export default Index

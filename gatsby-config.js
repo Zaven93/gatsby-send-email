@@ -6,11 +6,26 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-sass`,
+    `gatsby-plugin-fontawesome-css`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
         path: `${__dirname}/src/images`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-intl`,
+      options: {
+        // Directory with the strings JSON
+        path: `${__dirname}/src/intl`,
+        // Supported languages
+        languages: [`ru`, `en`],
+        // Default site language
+        defaultLanguage: `ru`,
+        // Redirects to `/ru` in the route `/`
+        redirect: true,
       },
     },
     `gatsby-transformer-sharp`,
